@@ -20,7 +20,7 @@ Exemples :
 
 ```U=$USER su -w DISPLAY,U -c 'cascade_x_app.sh xeyes' -``` exécute ```xeyes``` (normalement installé avec le serveur X)
 
-```U=$USER su -w DISPLAY,U -c 'cascade_x_app.sh thunar /mnt' -``` ouvre le gestionnaire de fichier ```thunar``` depuis le dossier /mnt
+```U=$USER su -w DISPLAY,U -c 'cascade_x_app.sh thunar /mnt' -``` ouvre le gestionnaire de fichier ```thunar``` depuis le dossier ```/mnt```
 
 
 Le script :

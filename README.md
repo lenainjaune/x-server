@@ -12,15 +12,15 @@ La commande :
 ```sh
 sh -c "U=$USER su -w DISPLAY,U -c 'cascade_x_app.sh app args' -"
 ```
-Explications : ```sh sh -c "..."``` exécute une commande, ```sh U=$USER ...``` permet de sauvegarder le user actuel dans la commande actuelle, ```sh su -w DISPLAY,U -c '...' -``` permet de passer en root avec son environnement (- final) une commande (-c) tout en conservant les variables DISPLAY et U (-w = --whitelist-environment), ```sh -c 'cascade_x_app.sh app args'``` exécute le script (voir dessous) en lui fournissant l'application à exécuter et ses arguments
+Explications : ```sh -c "..."``` exécute une commande, ```U=$USER ...``` permet de sauvegarder le user actuel dans la commande actuelle, ```su -w DISPLAY,U -c '...' -``` permet de passer en root avec son environnement (- final) une commande (-c) tout en conservant les variables DISPLAY et U (-w = --whitelist-environment), ```cascade_x_app.sh app args``` exécute le script (voir dessous) en lui fournissant l'application à exécuter et ses arguments
 
 => on devra saisir le mot de passe de root
 
 Exemples :
 
-```sh sh -c "U=$USER su -w DISPLAY,U -c 'cascade_x_app.sh xeyes' -"``` exécute xeyes (normalement installé avec le serveur X)
+```sh -c "U=$USER su -w DISPLAY,U -c 'cascade_x_app.sh xeyes' -"``` exécute xeyes (normalement installé avec le serveur X)
 
-```sh sh -c "U=$USER su -w DISPLAY,U -c 'cascade_x_app.sh thunar /mnt' -"``` ouvre le gestionnaire de fichier thunar depuis le dossier /mnt
+```sh -c "U=$USER su -w DISPLAY,U -c 'cascade_x_app.sh thunar /mnt' -"``` ouvre le gestionnaire de fichier thunar depuis le dossier /mnt
 
 
 Le script :
@@ -33,4 +33,4 @@ o_cookie=$( su -c "xauth list |grep $o_id_display" - $U )
 xauth add $o_cookie
 exec "$@"
 ```
-Explications : o_id_display identifie l'affichage de la session d'origine (filtre avec une regex, uniquement ce qui commence par ":" suivi de 1 à plusieurs chiffres), o_cookie identifie le cookie de la session d'origine (se connecte temporairement à la session d'origine par le user $U et récupère le cookie des autorisations d'affichage X de son affichage d'origine ; depuis root pas de demande de mot de passe), ```sh xauth add``` ajoute le cookie, ```sh exec "$@"``` exécute la commande fournie en $@ c'est à dire tous les arguments $1 à $n
+Explications : o_id_display identifie l'affichage de la session d'origine (filtre avec une regex, uniquement ce qui commence par ":" suivi de 1 à plusieurs chiffres), o_cookie identifie le cookie de la session d'origine (se connecte temporairement à la session d'origine par le user $U et récupère le cookie des autorisations d'affichage X de son affichage d'origine ; depuis root pas de demande de mot de passe), ```xauth add``` ajoute le cookie, ```exec "$@"``` exécute la commande fournie en $@ c'est à dire tous les arguments $1 à $n

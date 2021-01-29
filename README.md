@@ -10,22 +10,22 @@ Comment ça marche (de ce que j'ai compris) : pour autoriser le serveur X dans u
 
 La commande :
 ```sh
-sh -c "U=$USER su -w DISPLAY,U -c 'cascade_x_app.sh app args' -"
+U=$USER su -w DISPLAY,U -c 'cascade_x_app.sh app args' -
 ```
-Explications : ```sh -c "..."``` exécute une commande, ```U=$USER ...``` permet de sauvegarder le user actuel dans la commande actuelle, ```su -w DISPLAY,U -c '...' -``` permet de passer en root avec son environnement (- final) une commande (-c) tout en conservant les variables DISPLAY et U (-w = --whitelist-environment), ```cascade_x_app.sh app args``` exécute le script (voir dessous) en lui fournissant l'application à exécuter et ses arguments
+Explications : ```U=$USER ...``` permet de sauvegarder le user actuel dans la commande actuelle, ```su -w DISPLAY,U -c '...' -``` permet de passer en root avec son environnement (- final) une commande (-c) tout en conservant les variables DISPLAY et U (-w = --whitelist-environment), ```cascade_x_app.sh app args``` exécute le script (voir dessous) en lui fournissant l'application à exécuter et ses arguments
 
 => on devra saisir le mot de passe de root
 
 Exemples :
 
-```sh -c "U=$USER su -w DISPLAY,U -c 'cascade_x_app.sh xeyes' -"``` exécute xeyes (normalement installé avec le serveur X)
+```U=$USER su -w DISPLAY,U -c 'cascade_x_app.sh xeyes' -``` exécute xeyes (normalement installé avec le serveur X)
 
-```sh -c "U=$USER su -w DISPLAY,U -c 'cascade_x_app.sh thunar /mnt' -"``` ouvre le gestionnaire de fichier thunar depuis le dossier /mnt
+```U=$USER su -w DISPLAY,U -c 'cascade_x_app.sh thunar /mnt' -``` ouvre le gestionnaire de fichier thunar depuis le dossier /mnt
 
 
 Le script :
 ```sh
-user@hostr:~$ cat cascade_x_app.sh
+user@host:~$ cat cascade_x_app.sh
 #! /bin/bash
 #echo $U $DISPLAY $USER ; xauth list
 o_id_display=$( echo $DISPLAY |grep -Eo :[0-9]+ )

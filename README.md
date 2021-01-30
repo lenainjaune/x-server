@@ -10,7 +10,7 @@ Comment ça marche (de ce que j'ai compris) : pour autoriser le serveur X dans u
 
 Commande tout-en-un:
 ```sh
-user@host:~$ C=$( xauth list | grep $( echo $DISPLAY |grep -Eo :[0-9]+ ) ) \
+user@host:~$ C=$( xauth list |grep $( echo $DISPLAY |grep -Eo :[0-9]+ ) ) \
 su -w C,DISPLAY -c "xauth add \$C ; app args" -
 ```
 Explications :
@@ -18,13 +18,13 @@ Explications :
 
 Exemples :
 
-```C=$( xauth list | grep $( echo $DISPLAY |grep -Eo :[0-9]+ ) ) su -w C,DISPLAY -c "xauth add \$C ; xeyes' -```  
+```C=$( xauth list |grep $( echo $DISPLAY |grep -Eo :[0-9]+ ) ) su -w C,DISPLAY -c "xauth add \$C ; xeyes' -```  
 exécute ```xeyes``` (normalement installé avec le serveur X)
 
-```U=$USER su -w DISPLAY,U -c 'cascade_x_app.sh thunar /mnt' -``` ouvre le gestionnaire de fichier ```thunar``` depuis le dossier ```/mnt```
+```C=$( xauth list |grep $( echo $DISPLAY |grep -Eo :[0-9]+ ) ) su -w C,DISPLAY -c "xauth add \$C ; thunard /mnt' -```   ouvre le gestionnaire de fichier ```thunar``` depuis le dossier ```/mnt```
 
-
-Ancienne commande :
+## Ancienne méthode
+Commande :
 ```sh
 U=$USER su -w DISPLAY,U -c 'cascade_x_app.sh app args' -
 ```
@@ -37,7 +37,6 @@ Exemples :
 ```U=$USER su -w DISPLAY,U -c 'cascade_x_app.sh xeyes' -``` exécute ```xeyes``` (normalement installé avec le serveur X)
 
 ```U=$USER su -w DISPLAY,U -c 'cascade_x_app.sh thunar /mnt' -``` ouvre le gestionnaire de fichier ```thunar``` depuis le dossier ```/mnt```
-
 
 Le script :
 ```sh

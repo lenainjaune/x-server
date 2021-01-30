@@ -18,8 +18,8 @@ Explications :
 
 Exemples :
 
-```C=$( xauth list | grep $( echo $DISPLAY |grep -Eo :[0-9]+ ) ) \
-su -w C,DISPLAY -c "xauth add \$C ; xeyes' -``` exécute ```xeyes``` (normalement installé avec le serveur X)
+```C=$( xauth list | grep $( echo $DISPLAY |grep -Eo :[0-9]+ ) ) su -w C,DISPLAY -c "xauth add \$C ; xeyes' -```  
+exécute ```xeyes``` (normalement installé avec le serveur X)
 
 ```U=$USER su -w DISPLAY,U -c 'cascade_x_app.sh thunar /mnt' -``` ouvre le gestionnaire de fichier ```thunar``` depuis le dossier ```/mnt```
 

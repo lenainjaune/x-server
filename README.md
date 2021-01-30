@@ -10,7 +10,8 @@ Comment ça marche (de ce que j'ai compris) : pour autoriser le serveur X dans u
 
 Commande tout-en-un:
 ```sh
-user@host:~$ C=$( xauth list | grep $( echo $DISPLAY |grep -Eo :[0-9]+ ) ) su -w C,DISPLAY -c "xauth add \$C ; app args" -
+user@host:~$ C=$( xauth list | grep $( echo $DISPLAY |grep -Eo :[0-9]+ ) ) \
+su -w C,DISPLAY -c "xauth add \$C ; app args" -
 ```
 Explications :
 ``` C=$( ... )``` sauvegarde le cookie de la session actuelle pour l'affichage actuel, ```echo $DISPLAY |grep -Eo :[0-9]+ )``` identifie l'affichage de la session actuelle sous la forme *:c...c* où chaque *c* est un chiffre pour composer un nombre et ce qui suit est ignoré (filtre avec une regex (```-E```), uniquement (```-o```) ce qui commence par ":" suivi de 1 à plusieurs chiffres (```:[0-9]+```)), ```xauth list | grep ...``` extrait le cookie de la session actuelle

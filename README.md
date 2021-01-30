@@ -18,10 +18,10 @@ Explications :
 
 Exemples :
 
-```C=$( xauth list |grep $( echo $DISPLAY |grep -Eo :[0-9]+ ) ) su -w C,DISPLAY -c "xauth add \$C ; xeyes' -```  
+```C=$( xauth list |grep $( echo $DISPLAY |grep -Eo :[0-9]+ ) ) su -w C,DISPLAY -c "xauth add \$C ; xeyes" -```  
 exécute ```xeyes``` (normalement installé avec le serveur X)
 
-```C=$( xauth list |grep $( echo $DISPLAY |grep -Eo :[0-9]+ ) ) su -w C,DISPLAY -c "xauth add \$C ; thunard /mnt' -```   ouvre le gestionnaire de fichier ```thunar``` depuis le dossier ```/mnt```
+```C=$( xauth list |grep $( echo $DISPLAY |grep -Eo :[0-9]+ ) ) su -w C,DISPLAY -c "xauth add \$C ; thunard /mnt" -```   ouvre le gestionnaire de fichier ```thunar``` depuis le dossier ```/mnt```
 
 ## Ancienne méthode
 Commande :

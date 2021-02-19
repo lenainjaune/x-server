@@ -1,7 +1,7 @@
 # x-server
 HOWTO pour serveur X
 
-# X cascadé sur autre session
+# X cascadé sur autre session (Debian only)
 Contexte : quand un utilisateur a des droits sur l'affichage graphique de sa session, il n'a généralement pas les droits sur une autre session. Par exemple, sur une simple installation de Debian Buster fraichement installée avec un gestionnaire de bureau, si on exécute ```xeyes``` depuis un terminal depuis sa session graphique, l'application se lance alors mais si on passe en root la même commande abouti au bien connu ```Error: Can't open display: ...```. De même quand on accède à une session SSH par X-forwarding (```ssh -X ou -Y```) on ne peut lancer des applications graphique que depuis la session de l'utilisateur avec lequel on s'est loggué.
 
 Ici est expliqué une méthode de contournement personnelle (à priori sans risque) pour "cascader" les droits d'une session utilisateur à une autre (root par exemple). Cette méthode n'est pas certifiée fiable, ni sûrement la plus appropriée, mais pour moi elle a fonctionné.

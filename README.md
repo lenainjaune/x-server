@@ -23,7 +23,7 @@ exécute ```xeyes``` (normalement installé avec le serveur X)
 
 ```C=$( xauth list |grep $( echo $DISPLAY |grep -Eo :[0-9]+ ) ) su -w C,DISPLAY -c "xauth add \$C ; thunar /mnt" -```   ouvre le gestionnaire de fichier ```thunar``` depuis le dossier ```/mnt```
 
-## Ancienne méthode
+## Ancienne méthode (Debian only)
 Commande :
 ```sh
 U=$USER su -w DISPLAY,U -c 'cascade_x_app.sh app args' -
